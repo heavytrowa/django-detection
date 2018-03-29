@@ -1,0 +1,10 @@
+apples
+banana
+beansprouts
+cabbage
+chinesecabbage
+grapes
+kiwi
+orange
+spinach
+waterspinach
