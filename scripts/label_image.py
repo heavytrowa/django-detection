@@ -147,7 +147,8 @@ print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 for i in top_k:
     print(labels[i], results[i])
     data = {"result": labels[i]}
-    db.child("return").push(data)
+    # db.child("return").push(data)
+    db.child("return").child("count").set(data)
 
 
     break
