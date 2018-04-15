@@ -140,15 +140,23 @@ config = {
  }
 
 
-
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
+users_by_value = db.child("test").child("count").get()
+x = int(users_by_value.val())
+x = x+1
+# users_by_value = int(users_by_value.__str__()) + 1
+# x = json.dumps(users_by_value)
+# users_by_value = users_by_value + 1
 print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 for i in top_k:
     print(labels[i], results[i])
     data = {"result": labels[i]}
     # db.child("return").push(data)
-    db.child("return").child("count").set(data)
+    db.child("return").child(x).set(data)
+    # db.child("return").child(labels[i]).Child("count").set()
+    #下午改 count++ java or c++ not for pyrebase, push has a unique timestamp dunno if we could fetch data
 
 
     break
+db.child("test").child("count").set(x)
