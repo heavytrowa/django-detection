@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ==============================================================================
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -20,10 +19,13 @@ import pyrebase
 import argparse
 import sys
 import time
+from datetime import datetime
+
 
 
 import numpy as np
 import tensorflow as tf
+# now = datetime.datetime.now()
 
 def load_graph(model_file):
   graph = tf.Graph()
@@ -152,11 +154,10 @@ print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 for i in top_k:
     print(labels[i], results[i])
     data = {"result": labels[i]}
-    # db.child("return").push(data)
+
+    data1 = {"createdAt": str(datetime.now())[:16]}
     db.child("return").child(x).set(data)
+    db.child("time").child(x).set(data1)
     # db.child("return").child(labels[i]).Child("count").set()
-    #下午改 count++ java or c++ not for pyrebase, push has a unique timestamp dunno if we could fetch data
-
-
     break
 db.child("test").child("count").set(x)

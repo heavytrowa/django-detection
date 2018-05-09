@@ -9,6 +9,6 @@ config = {
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 users_by_value = db.child("test").child("count").get()
-x = str(users_by_value.val())
+x = str(users_by_value.val()+1)
 storage = firebase.storage()
 storage.child("image/"+x+".jpg").download("0.jpg")
