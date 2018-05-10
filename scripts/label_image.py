@@ -154,9 +154,12 @@ print('\nEvaluation time (1-image): {:.3f}s\n'.format(end-start))
 for i in top_k:
     print(labels[i], results[i])
     data = {"result": labels[i]}
-
+    data2 = {"result": "others"}
     data1 = {"createdAt": str(datetime.now())[:16]}
-    db.child("return").child(x).set(data)
+    if results[i]<0.85:
+        db.child("return").child(x).set(data2)
+    else:
+        db.child("return").child(x).set(data)
     db.child("time").child(x).set(data1)
     # db.child("return").child(labels[i]).Child("count").set()
     break
