@@ -1,4 +1,5 @@
 import pyrebase
+import time
 
 config = {
   "apiKey": "AIzaSyBBMTte0i4rrpPb1k0HEAdzzfXNQPOTFhs",
@@ -6,6 +7,7 @@ config = {
   "databaseURL": "https://nutrition-mis2018.firebaseio.com",
   "storageBucket": "nutrition-mis2018.appspot.com",
 	}
+time.sleep(5)
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
 users_by_value = db.child("test").child("count").get()
